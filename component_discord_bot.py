@@ -57,6 +57,9 @@ class DiscordBotWAMPComponent(ApplicationSession):
 
             async def on_online(payload):
                 try:
+                    if payload['type'] != "live":
+                        return None
+
                     channel = await self.fetch_channel(payload['channel_id'])
                     game = await self.fetch_game(payload['game_id'])
 
