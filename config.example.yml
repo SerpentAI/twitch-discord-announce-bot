@@ -1,0 +1,22 @@
+crossbar:
+    host: localhost
+    port: 9999
+    realm: discord
+    auth:
+        username: backend
+        password: "12345"
+
+redis:
+    host: localhost
+    port: 6379
+    prefix: "DISCORD"
+
+webhook_callback_url: "http://123.ngrok.io"
+webhook_secret: "sneksneksneksnek"
+
+discord:
+    server: My Server Name
+    channel: announcements
+
+channels:
+    - Serpent_AI

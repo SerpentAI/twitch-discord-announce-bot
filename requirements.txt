@@ -1,0 +1,11 @@
+PyYAML
+
+crossbar
+autobahn
+
+sanic
+
+aioredis
+requests
+
+discord.py

@@ -1,0 +1,14 @@
+.idea
+.vscode
+
+__pycache__/
+*.py[cod]
+
+.python-version
+
+config.yml
+config.auth.yml
+
+key.priv
+key.pub
+node.pid

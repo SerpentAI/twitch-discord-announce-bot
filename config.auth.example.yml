@@ -1,0 +1,8 @@
+credentials:
+    twitch:
+        client_id: "12345"
+        client_secret: "12345"
+    discord:
+        client_id: "12345"
+        client_secret: "12345"
+        bot_user_token: "12345"
