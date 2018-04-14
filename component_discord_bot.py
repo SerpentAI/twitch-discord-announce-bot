@@ -42,7 +42,7 @@ class DiscordBotWAMPComponent(ApplicationSession):
     async def onJoin(self, details):
         self.redis_client = await self._initialize_redis_client()
         self.messages = dict()
-        
+
         self.discord = discord.Client()
 
         @self.discord.event
@@ -58,6 +58,9 @@ class DiscordBotWAMPComponent(ApplicationSession):
             async def on_online(payload):
                 try:
                     if payload['type'] != "live":
+                        return None
+
+                    if self.messages.get(payload["channel_id"]) is not None:
                         return None
 
                     channel = await self.fetch_channel(payload['channel_id'])
@@ -89,6 +92,7 @@ class DiscordBotWAMPComponent(ApplicationSession):
 
                     if message:
                         await self.discord.delete_message(message)
+                        del self.messages[payload['channel_id']]
                 except Exception:
                     pass
 
