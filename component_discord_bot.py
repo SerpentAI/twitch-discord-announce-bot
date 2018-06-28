@@ -49,7 +49,7 @@ class DiscordBotWAMPComponent(ApplicationSession):
         async def on_ready():
             bot_channel = None
 
-            for server in self.discord.servers:
+            for server in self.discord.guilds:
                 if server.name == config["discord"]["server"]:
                     for channel in server.channels:
                         if channel.name == config["discord"]["channel"]:
@@ -80,7 +80,7 @@ class DiscordBotWAMPComponent(ApplicationSession):
                     embed.add_field(name="Category", value=game['name'], inline=False)
                     embed.add_field(name="Title", value=payload["title"], inline=False)
 
-                    discord_message = await self.discord.send_message(bot_channel, message, embed=embed)
+                    discord_message = await bot_channel.send(message, embed=embed)
 
                     self.messages[payload["channel_id"]] = discord_message
                 except Exception:
@@ -91,7 +91,7 @@ class DiscordBotWAMPComponent(ApplicationSession):
                     message = self.messages.get(payload['channel_id'])
 
                     if message:
-                        await self.discord.delete_message(message)
+                        await message.delete()
                         del self.messages[payload['channel_id']]
                 except Exception:
                     pass
